@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pokédex</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Capriola&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Pokédex</h1>
+        <input id="buscador" type="text" placeholder="Busca un Pokémon...">
+    </header>
+
+    <!-- Spinner: se muestra mientras cargan los pokémon -->
+    <div id="loading">
+        <div class="spinner"></div>
+        <p>Cargando Pokémon...</p>
+    </div>
+
+    <!-- Modal: oculto por defecto, aparece al clickear una tarjeta -->
+    <div id="modal" class="modal-oculto">
+        <div class="modal-contenido">
+            <button id="cerrar-modal">✕</button>
+            <img id="modal-imagen">
+            <h2 id="modal-nombre"></h2>
+            <p id="modal-tipo"></p>
+            <p id="modal-experiencia"></p>
+            <p id="modal-altura"></p>
+            <p id="modal-peso"></p>
+            <p id="modal-hp"></p>
+            <p id="modal-ataque"></p>
+            <p id="modal-defensa"></p>
+            <p id="modal-velocidad"></p>
+        </div>
+    </div>
+
+    <main id="pokemon-container"></main>
+
+    <script src="script.js"></script>
+</body>
+</html>
