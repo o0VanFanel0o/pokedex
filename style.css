@@ -172,3 +172,10 @@ header input {
     border-radius: 10px;
     height: 8px;
 }
+.estrella {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    font-size: 20px;
+    color: gold;
+}
