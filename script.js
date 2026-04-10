@@ -1,5 +1,19 @@
 let todosLosPokemons = []
 let favoritos = JSON.parse(localStorage.getItem("favoritos")) || []  // Carga los favoritos desde localStorage o inicia un array vacío
+let modo = "todos" 
+
+const boton = document.querySelector("#boton-favoritos")
+boton.addEventListener("click", () => {
+    if (modo === "todos") {
+        mostrarPokemons(todosLosPokemons.filter(pokemon => favoritos.includes(pokemon.nombre)))
+        boton.textContent = "Mostrar Todos"
+        modo = "favoritos"
+    } else {
+        mostrarPokemons(todosLosPokemons)
+        boton.textContent = "Mostrar Favoritos"
+        modo = "todos"
+    }
+})
 
 const obtenerPokemon = async () => {
     try {
