@@ -1,4 +1,5 @@
 let todosLosPokemons = []
+let favoritos = JSON.parse(localStorage.getItem("favoritos")) || []  // Carga los favoritos desde localStorage o inicia un array vacío
 
 const obtenerPokemon = async () => {
     try {
@@ -50,13 +51,30 @@ const mostrarPokemons = (pokemons) => {
     contenedor.innerHTML = ""
 
     pokemons.forEach(pokemon => {
+        const esFavorito = favoritos.includes(pokemon.nombre)
         const tarjeta = document.createElement("div")
+        // Agregar Favoritos
         tarjeta.classList.add("tarjeta")
-        tarjeta.innerHTML = `
+        tarjeta.innerHTML =`
+            <span class="estrella">${esFavorito ? "★" : "☆"}</span>
             <img src="${pokemon.imagen}" alt="${pokemon.nombre}">
             <h3>${pokemon.nombre}</h3>
             <p class="${pokemon.tipo}">${pokemon.tipo}</p>
         `
+        const estrella = tarjeta.querySelector(".estrella")
+        estrella.addEventListener("click", (e) => {
+            e.stopPropagation()  // Evita que se abra el modal al clickear la estrella
+            
+            if (favoritos.includes(pokemon.nombre)) {
+                favoritos = favoritos.filter(nombre => nombre !== pokemon.nombre)
+            } else {
+                favoritos.push(pokemon.nombre)
+            }
+
+    localStorage.setItem("favoritos", JSON.stringify(favoritos))
+
+    mostrarPokemons(todosLosPokemons)
+})
 
         // Al clickear la tarjeta abre el modal con los datos del pokémon
         tarjeta.addEventListener("click", () => abrirModal(pokemon))
