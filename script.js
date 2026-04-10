@@ -156,9 +156,16 @@ document.querySelector("#modal").addEventListener("click", (e) => {
 const buscador = document.querySelector("#buscador")
 buscador.addEventListener("input", (e) => {
     const texto = e.target.value.toLowerCase().trim()
-    const pokemonsFiltrados = todosLosPokemons.filter(
-        pokemon => pokemon.nombre.includes(texto)
-    )
+    const pokemonsFiltrados = todosLosPokemons.filter(pokemon => {
+    const coincideTexto = pokemon.nombre.includes(texto)
+    const esFavorito = favoritos.includes(pokemon.nombre)
+
+    if (modo === "favoritos") {
+        return coincideTexto && esFavorito
+    }
+
+    return coincideTexto
+    })
     mostrarPokemons(pokemonsFiltrados)
 })
 
