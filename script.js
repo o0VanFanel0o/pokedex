@@ -67,7 +67,6 @@ const mostrarPokemons = (pokemons) => {
     pokemons.forEach(pokemon => {
         const esFavorito = favoritos.includes(pokemon.nombre)
         const tarjeta = document.createElement("div")
-        // Agregar Favoritos
         tarjeta.classList.add("tarjeta")
         tarjeta.innerHTML =`
             <span class="estrella">${esFavorito ? "★" : "☆"}</span>
