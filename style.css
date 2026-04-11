@@ -61,7 +61,20 @@ header input {
     color: white;
     text-transform: capitalize;
 }
+.tipos {
+    display: flex;
+    gap: 6px;
+    justify-content: center;
+}
 
+.tipos span {
+    padding: 4px 10px;
+    border-radius: 999px;
+    font-size: 12px;
+    color: white;
+    font-weight: bold;
+    text-transform: capitalize;
+}
 /* Colores por tipo */
 .fire { background: #F08030; }
 .water { background: #6890F0; }
@@ -79,6 +92,8 @@ header input {
 .ghost { background: #705898; }
 .dragon { background: #7038F8; }
 .fighting { background: #C03028; }
+.dark { background: #705848; }
+.steel { background: #B8B8D0; }
 
 /* Spinner — aparece mientras cargan los pokémon */
 #loading {

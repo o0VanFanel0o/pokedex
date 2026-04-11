@@ -20,7 +20,7 @@ const obtenerPokemon = async () => {
         // Muestra el spinner antes de empezar a cargar
         document.querySelector("#loading").style.display = "flex"
 
-        const pokemons = await fetch("https://pokeapi.co/api/v2/pokemon?limit=151")
+        const pokemons = await fetch("https://pokeapi.co/api/v2/pokemon?limit=500")
         const data = await pokemons.json()
         const listaPokemons = data.results
         const detallesPokemons = await Promise.all(
@@ -43,7 +43,7 @@ const obtenerDetalle = async (url) => {
     return {
         nombre: pokemon.name,
         imagen: pokemon.sprites.front_default,
-        tipo: pokemon.types[0].type.name,
+        tipos: pokemon.types.map(t => t.type.name),
         experiencia: pokemon.base_experience,  // guardamos la experiencia para el modal
         altura: pokemon.height,  // guardamos la altura para el modal
         peso: pokemon.weight,  // guardamos el peso para el modal
@@ -66,13 +66,16 @@ const mostrarPokemons = (pokemons) => {
 
     pokemons.forEach(pokemon => {
         const esFavorito = favoritos.includes(pokemon.nombre)
+        const tiposHTML = pokemon.tipos.map(tipo =>
+            `<span class="${tipo}">${tipo}</span>`).join("")
         const tarjeta = document.createElement("div")
+
         tarjeta.classList.add("tarjeta")
         tarjeta.innerHTML =`
             <span class="estrella">${esFavorito ? "★" : "☆"}</span>
             <img src="${pokemon.imagen}" alt="${pokemon.nombre}">
             <h3>${pokemon.nombre}</h3>
-            <p class="${pokemon.tipo}">${pokemon.tipo}</p>
+            <div class="tipos">${tiposHTML}</div>
         `
         const estrella = tarjeta.querySelector(".estrella")
         estrella.addEventListener("click", (e) => {
@@ -87,7 +90,7 @@ const mostrarPokemons = (pokemons) => {
     localStorage.setItem("favoritos", JSON.stringify(favoritos))
 
     mostrarPokemons(todosLosPokemons)
-})
+        })
 
         // Al clickear la tarjeta abre el modal con los datos del pokémon
         tarjeta.addEventListener("click", () => abrirModal(pokemon))
@@ -102,7 +105,7 @@ const abrirModal = (pokemon) => {
     // Rellena el modal con los datos del pokémon clickeado
     document.querySelector("#modal-imagen").src = pokemon.imagen
     document.querySelector("#modal-nombre").textContent = pokemon.nombre
-    document.querySelector("#modal-tipo").textContent = `Tipo: ${pokemon.tipo}`
+    document.querySelector("#modal-tipo").textContent = `Tipo: ${pokemon.tipos.join(" & ")}`
     document.querySelector("#modal-experiencia").textContent = `Experiencia base: ${pokemon.experiencia}`
     document.querySelector("#modal-altura").textContent = `Altura: ${pokemon.altura / 10}m`
     document.querySelector("#modal-peso").textContent = `Peso: ${pokemon.peso / 10}kg`
