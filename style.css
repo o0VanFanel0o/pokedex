@@ -7,9 +7,9 @@
 body {
     background: #f0f0f0;
 }
-header {
+header, header h1 {
     background: #cc0000;
-    color: white;
+    color: rgb(255, 251, 0);
     padding: 20px;
     text-align: center;
     font-family: "Saira Stencil", sans-serif;
@@ -161,6 +161,7 @@ header input {
     border: none;
     font-size: 20px;
     cursor: pointer;
+    color: rgba(0, 0, 0, 0.219);
 }
 
 .stat-barra-fondo {

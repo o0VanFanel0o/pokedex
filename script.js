@@ -102,8 +102,39 @@ const mostrarPokemons = (pokemons) => {
     })
 }
 
+const colores = {
+    fire: "#F08030",
+    water: "#6890F0",
+    grass: "#78C850",
+    poison: "#A040A0",
+    normal: "#A8A878",
+    bug: "#A8B820",
+    flying: "#A890F0",
+    electric: "#F8D030",
+    ground: "#E0C068",
+    fairy: "#EE99AC",
+    psychic: "#F85888",
+    rock: "#B8A038",
+    ice: "#98D8D8",
+    ghost: "#705898",
+    dragon: "#7038F8",
+    fighting: "#C03028",
+    dark: "#705848"
+}
+
+const getColor = (tipo) => colores[tipo] || "#ccc"  // color por defecto si el tipo no está en el objeto
+
 const abrirModal = (pokemon) => {
+    document.body.style.overflow = "hidden"  // Evita que el fondo se pueda scrollear cuando el modal está abierto
     const modal = document.querySelector("#modal")
+    const tipo1 = pokemon.tipos[0]
+    const tipo2 = pokemon.tipos[1]
+
+    if (pokemon.tipos.length === 1) {
+        modal.style.background = getColor(tipo1)
+    } else {
+        modal.style.background = `linear-gradient(135deg, ${getColor(tipo1)}, ${getColor(tipo2)})`
+    }
 
     // Rellena el modal con los datos del pokémon clickeado
     document.querySelector("#modal-imagen").src = pokemon.imagen
@@ -144,6 +175,7 @@ const abrirModal = (pokemon) => {
 
 // Cierra el modal al clickear el botón ✕
 document.querySelector("#cerrar-modal").addEventListener("click", () => {
+    document.body.style.overflow = "auto"  // Vuelve a permitir el scroll del fondo
     const modal = document.querySelector("#modal")
     modal.classList.remove("modal-visible")
     modal.classList.add("modal-oculto")
@@ -151,6 +183,7 @@ document.querySelector("#cerrar-modal").addEventListener("click", () => {
 
 // También cierra el modal al clickear fuera del contenido
 document.querySelector("#modal").addEventListener("click", (e) => {
+    document.body.style.overflow = "auto"  // Vuelve a permitir el scroll del fondo
     if (e.target.id === "modal") {  // solo si clickeas el fondo oscuro
         const modal = document.querySelector("#modal")
         modal.classList.remove("modal-visible")
