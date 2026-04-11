@@ -50,7 +50,8 @@ const obtenerDetalle = async (url) => {
         hp: pokemon.stats[0].base_stat,  // guardamos las estadísticas para el modal
         ataque: pokemon.stats[1].base_stat,
         defensa: pokemon.stats[2].base_stat,
-        velocidad: pokemon.stats[5].base_stat
+        velocidad: pokemon.stats[5].base_stat,
+        numero: pokemon.id  // guardamos el número para mostrarlo en la tarjeta
     }
 }
 
@@ -65,6 +66,7 @@ const mostrarPokemons = (pokemons) => {
     contenedor.innerHTML = ""
 
     pokemons.forEach(pokemon => {
+        const numero = pokemon.numero.toString().padStart(3, "0")
         const esFavorito = favoritos.includes(pokemon.nombre)
         const tiposHTML = pokemon.tipos.map(tipo =>
             `<span class="${tipo}">${tipo}</span>`).join("")
@@ -72,6 +74,7 @@ const mostrarPokemons = (pokemons) => {
 
         tarjeta.classList.add("tarjeta")
         tarjeta.innerHTML =`
+            <span class="numero">#${numero}</span>
             <span class="estrella">${esFavorito ? "★" : "☆"}</span>
             <img src="${pokemon.imagen}" alt="${pokemon.nombre}">
             <h3>${pokemon.nombre}</h3>
