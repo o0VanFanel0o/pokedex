@@ -51,7 +51,8 @@ const obtenerDetalle = async (url) => {
         ataque: pokemon.stats[1].base_stat,
         defensa: pokemon.stats[2].base_stat,
         velocidad: pokemon.stats[5].base_stat,
-        numero: pokemon.id  // guardamos el número para mostrarlo en la tarjeta
+        numero: pokemon.id,  // guardamos el número para mostrarlo en la tarjeta
+        shiny: pokemon.sprites.front_shiny  // guardamos la imagen shiny para el modal
     }
 }
 
@@ -129,6 +130,8 @@ const abrirModal = (pokemon) => {
     const modal = document.querySelector("#modal")
     const tipo1 = pokemon.tipos[0]
     const tipo2 = pokemon.tipos[1]
+    const imagen = document.querySelector("#modal-imagen")
+    const botonShiny = document.querySelector("#toggle-shiny")
 
     if (pokemon.tipos.length === 1) {
         modal.style.background = getColor(tipo1)
@@ -137,7 +140,22 @@ const abrirModal = (pokemon) => {
     }
 
     // Rellena el modal con los datos del pokémon clickeado
-    document.querySelector("#modal-imagen").src = pokemon.imagen
+    imagen.src = pokemon.imagen
+    let esShiny = false
+    botonShiny.textContent = "✨"
+    botonShiny.onclick = () => {
+    esShiny = !esShiny
+
+    imagen.style.opacity = 0
+
+    setTimeout(() => {
+        imagen.src = esShiny ? pokemon.shiny : pokemon.imagen
+        imagen.style.opacity = 1
+    }, 150)
+
+    botonShiny.textContent = esShiny ? "" : "✨"
+}
+    
     document.querySelector("#modal-nombre").textContent = pokemon.nombre
     document.querySelector("#modal-tipo").textContent = `Tipo: ${pokemon.tipos.join(" & ")}`
     document.querySelector("#modal-experiencia").textContent = `Experiencia base: ${pokemon.experiencia}`
