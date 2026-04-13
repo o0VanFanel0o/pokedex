@@ -8,10 +8,13 @@ body {
     background: #f0f0f0;
 }
 header, header h1 {
+    text-align: center;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
     background: #cc0000;
     color: rgb(255, 251, 0);
     padding: 20px;
-    text-align: center;
     font-family: "Saira Stencil", sans-serif;
 }
 header input {
@@ -238,7 +241,7 @@ header input {
 
 }
 .botones-filtros {
-    display: absolute;
+
     gap: 10px;
     margin-bottom: 20px;
 }
@@ -250,14 +253,15 @@ header input {
     box-shadow: inset -2px -2px 5px rgba(0,0,0,0.4);
     cursor: pointer;
 }
-.controles {
+#controles {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 20px;
+    margin-top: 10px;
+    width: 100%;
+    text-align: left;
+    justify-content: flex-end;
 }
 
-.botones-pokedex {
+.botones-filtros {
     display: flex;
     gap: 10px;
 }

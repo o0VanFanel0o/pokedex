@@ -20,7 +20,7 @@ const obtenerPokemon = async () => {
         // Muestra el spinner antes de empezar a cargar
         document.querySelector("#loading").style.display = "flex"
 
-        const pokemons = await fetch("https://pokeapi.co/api/v2/pokemon?limit=500")
+        const pokemons = await fetch("https://pokeapi.co/api/v2/pokemon?limit=151")
         const data = await pokemons.json()
         const listaPokemons = data.results
         const detallesPokemons = await Promise.all(
