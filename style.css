@@ -237,3 +237,41 @@ header input {
     transition: all 0.2s ease;
 
 }
+.botones-filtros {
+    display: absolute;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+.btn {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    display: inline-block;
+    box-shadow: inset -2px -2px 5px rgba(0,0,0,0.4);
+    cursor: pointer;
+}
+.controles {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+}
+
+.botones-pokedex {
+    display: flex;
+    gap: 10px;
+}
+.rojo {
+    background: #ff3b3b;
+}
+
+.amarillo {
+    background: #ffd93b;
+}
+
+.verde {
+    background: #4cd137;
+}
+.btn:hover {
+    transform: scale(1.2);
+}

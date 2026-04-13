@@ -6,11 +6,11 @@ const boton = document.querySelector("#boton-favoritos")
 boton.addEventListener("click", () => {
     if (modo === "todos") {
         mostrarPokemons(todosLosPokemons.filter(pokemon => favoritos.includes(pokemon.nombre)))
-        boton.textContent = "Mostrar Todos"
+        boton.textContent = ""
         modo = "favoritos"
     } else {
         mostrarPokemons(todosLosPokemons)
-        boton.textContent = "Mostrar Favoritos"
+        boton.textContent = ""
         modo = "todos"
     }
 })
