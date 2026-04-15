@@ -7,7 +7,9 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Capriola&display=swap&family=Saira+Stencil:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet" rel="stylesheet">
-        
+    
+    <link rel="icon" type="image/x-icon" sizes="32x32" href="pokeball.jpg">
+
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -20,7 +22,10 @@
             </span>
         </div>
         <h1>Pokédex</h1>
-        <input id="buscador" type="text" placeholder="Busca un Pokémon...">
+        <div class="input-group">
+            <input required="" id="buscador" type="text" name="text" autocomplete="off" class="input">
+            <label class="user-label">Busca un Pokémon</label>
+        </div>
     </header>
 
     <!-- Spinner: se muestra mientras cargan los pokémon -->
