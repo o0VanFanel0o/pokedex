@@ -11,7 +11,7 @@ Aplicación web que consume la API de Pokémon para mostrar los primeros 151 Pok
 
 ![Vista previa](captura1.png) 
 ![Vista previa](captura2.png)
-![Demo](demo1.gif)
+![Demo](demo.gif)
 
 ## 🛠️ Tecnologías
 
