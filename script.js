@@ -225,4 +225,50 @@ buscador.addEventListener("input", (e) => {
     mostrarPokemons(pokemonsFiltrados)
 })
 
+const mezclarPokemons = (array) => {
+    return [...array].sort(() => Math.random() - 0.5)
+}
+const botonRandom = document.querySelector("#boton-random")
+
+botonRandom.addEventListener("click", () => {
+    const pokemonsMezclados = mezclarPokemons(todosLosPokemons)
+    mostrarPokemons(pokemonsMezclados)
+})
+
+let modoOrden = "numero"
+
+const ordenarPokemons = (lista) => {
+    const copia = [...lista]
+
+    if (modoOrden === "numero") {
+        copia.sort((a, b) => a.numero - b.numero)
+    } else {
+        copia.sort((a, b) => a.nombre.localeCompare(b.nombre))
+    }
+
+    return copia
+}
+const botonOrden = document.querySelector("#boton-ordenar")
+botonOrden.addEventListener("click", () => {
+    let lista = []
+
+    if (modo === "favoritos") {
+        lista = todosLosPokemons.filter(p => favoritos.includes(p.nombre))
+    } else {
+        lista = todosLosPokemons
+    }
+
+    const ordenados = ordenarPokemons(lista)
+    mostrarPokemons(ordenados)
+
+    // Toggle de modo
+    modoOrden = modoOrden === "numero" ? "nombre" : "numero"
+
+    // Cambiar texto del botón (opcional)
+    botonOrden.textContent =
+        modoOrden === "numero" ? "" : ""
+})
+
+
+
 obtenerPokemon()
